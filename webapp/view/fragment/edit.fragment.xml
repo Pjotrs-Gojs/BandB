@@ -1,0 +1,56 @@
+<core:FragmentDefinition
+xmlns="sap.m"
+xmlns:f="sap.ui.layout.form"
+xmlns:l="sap.ui.layout"
+xmlns:core="sap.ui.core"
+id="edit">
+    <Dialog id="openDialog" title="Edit box" afterClose="dialogAfterclose1">
+    <VBox class="sapUiSmallMargin">
+    <f:SimpleForm
+         id="SimpleFormDisplay354"
+         editable="true"
+         layout="ResponsiveGridLayout"
+         title="Change the data"
+         labelSpanXL="3"
+     labelSpanL="3"
+         labelSpanM="3"
+         labelSpanS="12"
+         adjustLabelSpan="false"
+         emptySpanXL="4"
+         emptySpanL="4"
+         emptySpanM="4"
+         emptySpanS="0"
+     columnsXL="1"
+         columnsL="1"
+         columnsM="1"
+         singleContainerFullSize="false">
+    <f:content>
+    <Label text="Beer Name" required="true"/>
+    <Input id="inputBeerName" value="{BEER_NAME}" />
+    <Label text="Quantity" required="true"/>
+    <Input id="inputQuantity" value="{QUANTITY}"/>
+    <Label text="Price" required="true"/>
+    <Input id="inputPrice" value="{PRICE}" />
+    <Label text="Currency"/>
+    			<Select id="currency" selectedKey="{CURRENCY}">
+					<items>
+						<core:Item text="EUR" key="EUR"/>
+						<core:Item text="USD" key="USD"/>
+						<core:Item text="RUB" key="RUB"/>
+						<core:Item text="GBT" key="GBT"/>
+						<core:Item text="AUD" key="AUD"/>
+						<core:Item text="INR" key="INR"/>
+						<core:Item text="AUD" key="AUD"/>
+						<core:Item text="CAD" key="CAD"/>
+						<core:Item text="SGD" key="SGD"/>
+					</items>
+				</Select>
+    </f:content>
+    </f:SimpleForm>
+    </VBox>
+<buttons>
+    <Button text="Update" press=".updateDialog"/>
+    <Button text="Cancel" press=".closeDialog"/>
+</buttons>
+</Dialog>
+</core:FragmentDefinition>

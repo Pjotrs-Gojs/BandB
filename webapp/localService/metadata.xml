@@ -1,0 +1,17 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+		<Schema xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+			xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm"
+			Namespace="com.bbnew.Service.oData">
+			<EntityType Name="BarsType">
+				<Key><PropertyRef Name="BAR_ID"/></Key><Property Name="PHONE" Type="Edm.String" MaxLength="255"/><Property Name="STREET" Type="Edm.String" MaxLength="255"/><Property Name="BAR_ID" Type="Edm.String" Nullable="false" MaxLength="80"/><Property Name="BAR_NAME" Type="Edm.String" MaxLength="80"/><Property Name="QUANTITY" Type="Edm.Int32"/><NavigationProperty Name="BarsRef" Relationship="com.bbnew.Service.oData.BarsToBarsDetailType" FromRole="BarsPrincipal"
+					ToRole="BarsAndBeersDependent"/></EntityType>
+			<EntityType Name="BarsAndBeersType">
+				<Key><PropertyRef Name="BAR_ID"/><PropertyRef Name="BEER_ID"/></Key><Property Name="BAR_NAME" Type="Edm.String" MaxLength="80"/><Property Name="BAR_ID" Type="Edm.String" Nullable="false" MaxLength="80"/><Property Name="BEER_ID" Type="Edm.String" Nullable="false" MaxLength="80"/><Property Name="BEER_NAME" Type="Edm.String" MaxLength="80"/><Property Name="PRICE" Type="Edm.Decimal" Precision="15" Scale="2"/><Property Name="QUANTITY" Type="Edm.Int32"/><Property Name="CURRENCY" Type="Edm.String" MaxLength="3"/></EntityType>
+			<Association Name="BarsToBarsDetailType"><End Type="com.bbnew.Service.oData.BarsType" Role="BarsPrincipal" Multiplicity="1"/><End Type="com.bbnew.Service.oData.BarsAndBeersType" Role="BarsAndBeersDependent" Multiplicity="*"/></Association>
+			<EntityContainer Name="oData" m:IsDefaultEntityContainer="true"><EntitySet Name="Bars" EntityType="com.bbnew.Service.oData.BarsType"/><EntitySet Name="BarsAndBeers" EntityType="com.bbnew.Service.oData.BarsAndBeersType"/>
+				<AssociationSet Name="BarsToBarsDetail" Association="com.bbnew.Service.oData.BarsToBarsDetailType"><End Role="BarsPrincipal" EntitySet="Bars"/><End Role="BarsAndBeersDependent" EntitySet="BarsAndBeers"/></AssociationSet>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

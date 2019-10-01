@@ -1,0 +1,68 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:semantic="sap.m.semantic"
+	controllerName="com.BandB.BandB.controller.Personal" xmlns:layout="sap.ui.layout" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:viz.data="sap.viz.ui5.data" xmlns:viz="sap.viz.ui5.controls">
+	<Page title="Personal in this BAR" showNavButton="true" navButtonPress="onNavBack" busy="{personalView>/busy}"
+		busyIndicatorDelay="{personalView>/delay}">
+		<content>
+			<Table noDataText="Drop column list items here and columns in the area above" id="table1" items="{PersonalRef}" sticky="ColumnHeaders"
+				growing="true" growingThreshold="50" growingScrollToLoad="true" mode="SingleSelectMaster"
+				busyIndicatorDelay="{personalView>/lineItemTableDelay}" updateFinished=".onListUpdateFinished">
+				<items>
+					<ColumnListItem type="Active" id="item1">
+						<cells>
+							<Text text="{PERSONAL_ID}"/>
+							<Text text="{NAME}"/>
+							<Text text="{POSITION}"/>
+							<Text text="{EMAIL}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+				<columns>
+					<Column id="column1">
+						<header>
+							<Label text="Personal ID" id="label1"/>
+						</header>
+					</Column>
+					<Column id="column2">
+						<header>
+							<Label text="NAME" id="label2"/>
+						</header>
+					</Column>
+					<Column id="column3">
+						<header>
+							<Label text="POSITION" id="label3"/>
+						</header>
+					</Column>
+					<Column id="column4">
+						<header>
+							<Label text="EMAIL" id="label4"/>
+						</header>
+					</Column>
+				</columns>
+			</Table>
+			<layout:FixFlex id='chartFixFlex' minFlexSize="250">
+				<layout:flexContent>
+					<viz:Popover id="idPopOver"></viz:Popover>
+					<viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" 	vizProperties="{	title: { visible: true, text: 'PERSONAL COUNT'},  
+																plotArea:{ dataLabel:{visible: true, type:'value'}}}" 
+																height='100%' width="100%" vizType='bar'>
+						<viz:dataset>
+							<viz.data:FlattenedDataset data="{CountRef}">
+								<viz.data:dimensions>
+									<viz.data:DimensionDefinition name="Position" value="{POSITION}"/>
+								</viz.data:dimensions>
+								<viz.data:measures>
+									<viz.data:MeasureDefinition name="Count" value="{COUNT}"/>
+								</viz.data:measures>
+							</viz.data:FlattenedDataset>
+						</viz:dataset>
+						<viz:feeds>
+							<viz.feeds:FeedItem id="feedValueAxis" uid="valueAxis" type="Measure" values="Count"/>
+							<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Position"/>
+						</viz:feeds>
+					</viz:VizFrame>
+				</layout:flexContent>
+			</layout:FixFlex>
+		</content>
+	</Page>
+</mvc:View>

@@ -1,0 +1,181 @@
+<mvc:View xmlns="sap.m" xmlns:semantic="sap.f.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:gmaps="openui5.googlemaps" xmlns:l="sap.ui.layout" controllerName="com.BandB.BandB.controller.Detail"
+	xmlns:course="com.BandB.BandB.control" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data">
+	<semantic:SemanticPage id="detailPage" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
+		<semantic:titleHeading>
+			<Title text="{BAR_NAME} ID.{BAR_ID}" level="H2"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<ToolbarSpacer/>
+			<Carousel>
+				<Image
+					src="https://previews.123rf.com/images/sabelskaya/sabelskaya1604/sabelskaya160400091/54730136-retro-neon-sign-with-the-word-bar-vintage-electric-symbol-burning-a-pointer-to-a-black-wall-in-a-clu.jpg"
+					width="25%" height="25%" id="image0"/>
+				<Image
+					src="http://static.asiawebdirect.com/m/bangkok/portals/bangkok-com/homepage/magazine/5-best-gogo-bars/pagePropertiesImage/badabingpatpong-2.jpg"
+					width="25%" height="25%" id="image1"/>
+				<Image src="https://media-cdn.tripadvisor.com/media/photo-s/08/2c/a7/13/cloud-9-sky-bar-lounge.jpg" width="25%" height="25%" id="image2"/>
+			</Carousel>
+			<Title text="Street: {STREET}" width="75%"/>
+			<ToolbarSpacer/>
+			<Text text="Phone Number: {PHONE}"/>
+			<ToolbarSpacer/>
+			<Button id="buttonPersonal" press="onPersonal" text="Personal in this BAR"/>
+			<ToolbarSpacer/>
+			<course:ProductRate id="ProductRate" value="{REITING}" valueSubmit="onRatingChanged"/>
+			<ToolbarSpacer/>
+			<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiTinyMargin" select="onTabChange">
+				<items>
+					<IconTabFilter icon="sap-icon://hint">
+						<Table id="lineItemsList" width="auto" mode="SingleSelectMaster" itemPress="deselect" items="{BarsRef}"
+							updateFinished=".onListUpdateFinished" noDataText="{i18n>detailLineItemTableNoDataText}"
+							busyIndicatorDelay="{detailView>/lineItemTableDelay}">
+							<headerToolbar>
+								<Toolbar>
+									<Title id="lineItemsTitle" text="{detailView>/lineItemListTitle}" titleStyle="H3" level="H3"/>
+									<ToolbarSpacer/>
+									<Button id="__button0" icon="sap-icon://add" press="onAdd" type="Accept"/>
+									<Button id="__button3" text="delete" press="onDelete1" enabled="false" type="Reject"/>
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column width="40%">
+									<Text text="{i18n>detailLineItemTableIDColumn1}"/>
+								</Column>
+								<!--<Column width="40%" hAlign="Center">-->
+								<!--	<Text text="{i18n>detailLineItemTableIDColumn2}"/>-->
+								<!--</Column>-->
+								<Column width="7%">
+									<Text text="{i18n>detailLineItemTableUnitNumberColumn}"/>
+								</Column>
+								<Column width="7%"></Column>
+								<!--<Column width="7%"></Column>-->
+							</columns>
+							<items>
+								<ColumnListItem type="Active">
+									<cells>
+										<ObjectIdentifier title="{BEER_NAME}" titleActive="true" titlePress="onShowDetailPopover"/>
+										<!--<ObjectNumber number="{ path: 'QUANTITY' }"/>-->
+										<ObjectNumber number="{ path: 'PRICE', formatter: '.formatter.currencyValue' }" unit="{CURRENCY}"/>
+										<!--<Button id="__button1" icon="sap-icon://delete" press="onDelete" type="Reject"/>-->
+										<Button xmlns="sap.m" id="__button2" icon="sap-icon://edit" press="onbuttonpress"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+						<Panel id="productDetailsPanel" visible="false" headerText="Extra Info.">
+							<l:Grid>
+								<Text text="Beer ID is : {BEER_ID}"/>
+								<Text text="Quantity is : {QUANTITY}"/>
+							</l:Grid>
+						</Panel>
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://group">
+					<l:FixFlex id='chartFixFlex' minFlexSize="400">
+						<l:flexContent>
+							<viz:Popover id="idPopOver"></viz:Popover>
+							<viz:VizFrame	id="idVizFrame" 
+											uiConfig="{applicationSet:'fiori'}" 
+											vizProperties="{	title: { visible: true, text: 'BEER DONUT'},  
+																plotArea:{ dataLabel:{visible: true, type:'value'}}}" 
+											height='100%' 
+											width="100%" 
+											vizType='donut' >
+								<viz:dataset>
+									<viz.data:FlattenedDataset data="{BarsRef}">
+										<viz.data:dimensions>
+											<viz.data:DimensionDefinition name="Beer Name" value="{BEER_NAME}"/>
+										</viz.data:dimensions>
+										<viz.data:measures>
+											<viz.data:MeasureDefinition name="Quantity" value="{QUANTITY}"/>
+										</viz.data:measures>
+									</viz.data:FlattenedDataset>
+								</viz:dataset>
+								<viz:feeds>
+									<viz.feeds:FeedItem uid="size" type="Measure" values="Quantity"/>
+									<viz.feeds:FeedItem uid="color" type="Dimension" values="Beer Name"/>
+								</viz:feeds>
+							</viz:VizFrame>
+						</l:flexContent>
+					</l:FixFlex>
+					<Text text="Warehouse filled on:"/>
+					<ProgressIndicator				class="sapUiSmallMarginBottom" 
+													percentValue="{PERCENT}" 
+													displayValue="{QUANTITY_1} Boxes or {PERCENT}%..." 
+													showValue="true" 
+													state="None"
+													displayOnly="true" />
+					<Text text="Maximum 500 boxes in bar"/>
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://notes">
+					<HBox id="googleMap" height="300px" width="100%"></HBox>
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://map" count="24">
+					<gmaps:Map height="250px" zoom="12" lat="56.958110" lng="24.118970" apiKey="AIzaSyBGesGcaaltdGUUKKY6A7HQ4regjFRQV9c">
+						<gmaps:markers>
+							<gmaps:Marker lat="56.944820" lng="24.108870" info="CITA PUSE"/>
+							<gmaps:Marker lat="56.988251" lng="24.355881" info="9. Vilnis"/>
+							<gmaps:Marker lat="56.964870" lng="24.129200" info="Alus darbnica Labietis"/>
+							<gmaps:Marker lat="56.949510" lng="24.104490" info="BBARS"/>
+							<gmaps:Marker lat="56.836490" lng="24.489620" info="Bars XIII"/>
+							<gmaps:Marker lat="56.947270" lng="24.109970" info="COCO LOCO"/>
+							<gmaps:Marker lat="56.948980" lng="24.105960" info="CUBA CAFE"/>
+							<gmaps:Marker lat="56.947140" lng="24.111120" info="Easy Wine"/>
+							<gmaps:Marker lat="57.311430" lng="25.265840" info="Ezitis Migla"/>
+							<gmaps:Marker lat="56.547290" lng="27.710950" info="Folkklubs ala Pagrabs"/>
+							<gmaps:Marker lat="56.948620" lng="24.105950" info="GreenWood"/>
+							<gmaps:Marker lat="56.959810" lng="21.999900" info="HHC"/>
+							<gmaps:Marker lat="56.948000" lng="24.103230" info="JUST"/>
+							<gmaps:Marker lat="55.895170" lng="27.170610" info="KALJAN BAR 1001"/>
+							<gmaps:Marker lat="56.947920" lng="24.108680" info="KIWI BAR"/>
+							<gmaps:Marker lat="56.948530" lng="24.107440" info="LA BELLE EPOQUE"/>
+							<gmaps:Marker lat="56.505960" lng="21.006270" info="LIMONADE"/>
+							<gmaps:Marker lat="56.946790" lng="24.110820" info="Latvijas 1.ROKKAFEJNICA"/>
+							<gmaps:Marker lat="56.965500" lng="24.130380" info="Piens"/>
+							<gmaps:Marker lat="56.945920" lng="24.107620" info="Puce"/>
+							<gmaps:Marker lat="57.545900" lng="25.436360" info="RADIO BAR"/>
+							<gmaps:Marker lat="56.806220" lng="24.611720" info="Riga Black Magic"/>
+							<gmaps:Marker lat="56.948080" lng="24.104630" info="YOLO"/>
+						</gmaps:markers>
+					</gmaps:Map>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+	</semantic:headerContent>
+	<semantic:content></semantic:content>
+	<semantic:dependents>
+		<ResponsivePopover title="Extra Info" class="sapUiPopupWithPadding" id="dimensionsPopover" contentWidth="35%">
+			<content>
+				<l:Grid>
+					<l:content>
+						<Text text="Beer ID is : {BEER_ID}"/>
+						<Text text="Quantity is : {QUANTITY}"/>
+					</l:content>
+				</l:Grid>
+			</content>
+		</ResponsivePopover>
+	</semantic:dependents>
+	<!--Semantic ShareMenu Buttons-->
+	<semantic:sendEmailAction>
+		<semantic:SendEmailAction id="shareEmail" press=".onSendEmailPress"/>
+	</semantic:sendEmailAction>
+	<semantic:shareInJamAction>
+		<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press=".onShareInJamPress"/>
+	</semantic:shareInJamAction>
+	<semantic:saveAsTileAction>
+		<footerbar:AddBookmarkButton id="shareTile" title="{detailView>/saveAsTileTitle}"/>
+	</semantic:saveAsTileAction>
+	<semantic:closeAction>
+		<semantic:CloseAction id="closeColumn" press=".onCloseDetailPress"/>
+	</semantic:closeAction>
+	<semantic:fullScreenAction>
+		<semantic:FullScreenAction id="enterFullScreen"
+			visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}" press=".toggleFullScreen"/>
+	</semantic:fullScreenAction>
+	<semantic:exitFullScreenAction>
+		<semantic:ExitFullScreenAction id="exitFullScreen"
+			visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}" press=".toggleFullScreen"/>
+	</semantic:exitFullScreenAction>
+</semantic:SemanticPage>
+</mvc:View>
