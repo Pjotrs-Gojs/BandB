@@ -6,7 +6,6 @@ sap.ui.define([
 		function (Control, RatingIndicator, Button) {
 			"use strict";
 			return Control.extend("com.BandB.BandB.control.ProductRate", {
-				// var sReiting = this.getView().byId("detailPage").getBindingContext().getObject().REITING;
 				metadata: {
 					properties: {
 						value: {

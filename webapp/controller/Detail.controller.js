@@ -58,7 +58,6 @@ sap.ui.define([
 				});
 			this.getView().getModel().update(path, oPayload, {
 				success: function () {
-					sap.m.MessageToast.show("Reiting updated");
 				},
 				error: function (oResponce) {
 					sap.m.MessageToast.show("Something went wrong: " + oResponce);
