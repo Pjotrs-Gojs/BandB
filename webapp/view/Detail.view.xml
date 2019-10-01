@@ -143,7 +143,11 @@
 			</items>
 		</IconTabBar>
 	</semantic:headerContent>
-	<semantic:content></semantic:content>
+	<semantic:content>
+		<Button
+				text="Developed by"
+				press="onAuthor"/>
+	</semantic:content>
 	<semantic:dependents>
 		<ResponsivePopover title="Extra Info" class="sapUiPopupWithPadding" id="dimensionsPopover" contentWidth="35%">
 			<content>

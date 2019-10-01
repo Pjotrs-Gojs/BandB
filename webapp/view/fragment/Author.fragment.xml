@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover
+		title="Pjotrs Gojs"
+		class="sapUiContentPadding"
+		placement="Top">
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					text="Thanks"
+					press="onAuthorClose" />
+			</OverflowToolbar>
+		</footer>
+		<Image src="https://sun9-32.userapi.com/c626917/v626917607/17b44/sTqvUrIvZL8.jpg" width="25em" densityAware="false" />
+	</Popover>
+</core:FragmentDefinition>

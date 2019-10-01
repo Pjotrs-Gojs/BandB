@@ -42,6 +42,29 @@ sap.ui.define([
 		// 	oButton.setEnabled(true);
 		// },
 		
+		onAuthor: function (oEvent) {
+			var oButton = oEvent.getSource();
+
+			// create popover
+			if (!this._oPopover) {
+				Fragment.load({
+					name: "com.BandB.BandB.view.fragment.Author",
+					controller: this
+				}).then(function(pPopover) {
+					this._oPopover = pPopover;
+					this.getView().addDependent(this._oPopover);
+					this._oPopover.bindElement("/ProductCollection/0");
+					this._oPopover.openBy(oButton);
+				}.bind(this));
+			} else {
+				this._oPopover.openBy(oButton);
+			}
+		},
+		
+		onAuthorClose: function (oEvent) {
+			this._oPopover.close();
+		},
+		
 		onRatingChanged: function(oEvent) {
 			var iValue = oEvent.getParameter("value"),
 				sMessage =
