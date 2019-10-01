@@ -63,6 +63,32 @@
 					</viz:VizFrame>
 				</layout:flexContent>
 			</layout:FixFlex>
+			<CustomListItem>
+			<HBox class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiSmallMarginBegin">
+				<Image src="http://b2bmaster.ru/wp-content/uploads/2015/06/kak-podobrat-personal-v-restoran.jpg"
+						decorative="false"
+						width="170px"
+						densityAware="false">
+					<detailBox>
+						<LightBox>
+							<LightBoxItem
+									imageSrc="http://b2bmaster.ru/wp-content/uploads/2015/06/kak-podobrat-personal-v-restoran.jpg"
+									alt="Personal"
+									title="This is a Personal">
+							</LightBoxItem>
+						</LightBox>
+					</detailBox>
+					<!-- Fixes Hbox layout on Android Stock Browser for Android 5.0 -->
+					<layoutData>
+						<FlexItemData growFactor="1" shrinkFactor="0"/>
+					</layoutData>
+				</Image>
+				<VBox class="sapUiSmallMarginBegin">
+					<Title text="Personal"/>
+					<Text text="Good and honest food in a small and personal restaurant! The restaurant employs only one person, the owner and chef and he treats his guests in a very personal way. The menu is small. Two starters, five mains (three types of schnitzel, fish soup and a vegan varm salad) and three or four desserts."/>
+				</VBox>
+			</HBox>
+		</CustomListItem>
 		</content>
 	</Page>
 </mvc:View>
