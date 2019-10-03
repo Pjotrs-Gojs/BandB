@@ -9,7 +9,7 @@
 	<List
 		id="City"
 		items="{/City}"
-		>
+		itemPress="onPress">
 		<StandardListItem
 			title="{CITY}"
 			icon="https://media.gettyimages.com/photos/riga-cathedral-riga-latvia-picture-id1092243322?s=612x612"

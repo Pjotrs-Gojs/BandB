@@ -106,7 +106,7 @@
 					"target": "city"
 				},
 				{
-					"pattern": "",
+					"pattern": "CityRef/{CITY}",
 					"name": "master",
 					"target": "master"
 				},
@@ -139,17 +139,17 @@
 				},
 				"master": {
 					"viewName": "Master",
-					"viewLevel": 1,
+					"viewLevel": 3,
 					"viewId": "master"
 				},
 				"object": {
 					"viewName": "Detail",
 					"viewId": "detail",
-					"viewLevel": 1,
+					"viewLevel": 4,
 					"controlAggregation": "midColumnPages"
 				},
 				"personal": {
-					"viewLevel": 1,
+					"viewLevel": 3,
 					"viewId": "personal",
 					"viewName": "Personal",
 					"controlAggregation": "midColumnPages"

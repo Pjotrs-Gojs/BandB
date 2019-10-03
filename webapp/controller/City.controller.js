@@ -106,6 +106,17 @@ sap.ui.define([
 			oViewModel.setProperty("/delay", iOriginalViewBusyDelay);
 		},
 		
+		onPress: function(oEvent) {
+			var oItem;
+
+			oItem = oEvent.getParameter("listItem");
+			var sCity = oItem.getBindingContext().getProperty("CITY");
+		var router = sap.ui.core.UIComponent.getRouterFor(this);
+			router.navTo("master",{
+				CITY: sCity
+			});
+		},
+		
 		onNavBack: function () {
 			var oHistory = History.getInstance(),
 				sPreviousHash = oHistory.getPreviousHash();
