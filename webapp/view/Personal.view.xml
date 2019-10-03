@@ -1,7 +1,7 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:semantic="sap.m.semantic"
 	controllerName="com.BandB.BandB.controller.Personal" xmlns:layout="sap.ui.layout" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
 	xmlns:viz.data="sap.viz.ui5.data" xmlns:viz="sap.viz.ui5.controls">
-	<Page title="Personal in this BAR" showNavButton="true" navButtonPress="onNavBack" busy="{personalView>/busy}"
+		<Page title="Personal in this BAR" showNavButton="true" navButtonPress="onNavBack" busy="{personalView>/busy}"
 		busyIndicatorDelay="{personalView>/delay}">
 		<content>
 			<Table noDataText="Drop column list items here and columns in the area above" id="table1" items="{PersonalRef}" sticky="ColumnHeaders"

@@ -6,9 +6,11 @@
 	xmlns="sap.m">
 	<List
 		id="Country"
-		items="{/Country}">
+		items="{/Country}"
+		itemPress="onPress">
 		<StandardListItem
 			title="{COUNTRY}"
-			icon="https://media.gettyimages.com/photos/riga-cathedral-riga-latvia-picture-id1092243322?s=612x612"/>
+			icon="https://cdn.britannica.com/49/6249-004-179BDE49/Flag-Latvia.jpg"
+			type="Active"/>
 	</List>
 </mvc:View>

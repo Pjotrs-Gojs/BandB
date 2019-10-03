@@ -1,0 +1,20 @@
+<mvc:View
+	controllerName="com.BandB.BandB.controller.City"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<Page showNavButton="true" navButtonPress="onNavBack">
+		<content>
+	<List
+		id="City"
+		items="{/City}"
+		>
+		<StandardListItem
+			title="{CITY}"
+			icon="https://media.gettyimages.com/photos/riga-cathedral-riga-latvia-picture-id1092243322?s=612x612"
+			type="Active"/>
+	</List>
+	</content>
+	</Page>
+</mvc:View>

@@ -10,6 +10,17 @@ sap.ui.define([
 		return BaseController.extend("com.BandB.BandB.controller.Country", {
 
 		onInit : function() {
+		},
+		
+		onPress: function(oEvent) {
+			var oItem;
+
+			oItem = oEvent.getParameter("listItem");
+			var sCountry = oItem.getBindingContext().getProperty("COUNTRY");
+		var router = sap.ui.core.UIComponent.getRouterFor(this);
+			router.navTo("city",{
+				COUNTRY: sCountry
+			});
 		}
 
 	});

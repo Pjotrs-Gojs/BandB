@@ -101,6 +101,11 @@
 					"target": "country"
 				},
 				{
+					"pattern": "City/{COUNTRY}",
+					"name": "city",
+					"target": "city"
+				},
+				{
 					"pattern": "",
 					"name": "master",
 					"target": "master"
@@ -126,6 +131,11 @@
 					"viewName": "Country",
 					"viewLevel": 1,
 					"viewId": "country"
+				},
+				"city": {
+					"viewName": "City",
+					"viewLevel": 2,
+					"viewId": "city"
 				},
 				"master": {
 					"viewName": "Master",
