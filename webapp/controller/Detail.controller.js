@@ -300,9 +300,11 @@ sap.ui.define([
 					BAR_ID: sBarID,
 					BEER_ID: sBeerID
 				});
+			var that = this;
 			oView.getModel().update(path, oPayload, {
 				success: function () {
 					sap.m.MessageToast.show("Record updated");
+					that.getView().getModel().refresh();
 					oDialog.close();
 				},
 				error: function (oResponce) {
