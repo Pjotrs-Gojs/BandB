@@ -97,6 +97,11 @@
 			"routes": [
 				{
 					"pattern": "",
+					"name": "country",
+					"target": "country"
+				},
+				{
+					"pattern": "",
 					"name": "master",
 					"target": "master"
 				},
@@ -117,6 +122,11 @@
 				}
 			],
 			"targets": {
+				"country": {
+					"viewName": "Country",
+					"viewLevel": 1,
+					"viewId": "country"
+				},
 				"master": {
 					"viewName": "Master",
 					"viewLevel": 1,

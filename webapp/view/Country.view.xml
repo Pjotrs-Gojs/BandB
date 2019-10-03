@@ -1,0 +1,13 @@
+<mvc:View
+	controllerName="com.BandB.BandB.controller.Country"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<List
+		id="Country"
+		items="{/Bars}">
+		<StandardListItem
+			title="{COUNTRY}" />
+	</List>
+</mvc:View>
